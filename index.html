@@ -22,11 +22,12 @@
     --push-color:#ff6b47; --pull-color:#b047ff; --legs-color:#47ffb4; --run-color:#47b4ff;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
+  html {scroll-behavior: smooth;}
   body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
 
   /* HERO */
-  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem 2rem;position:relative;overflow:hidden;}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:2rem 2rem 2rem 4rem;position:relative;overflow:hidden;}
   .hero::after{content:'21K';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(12rem,25vw,22rem);color:transparent;-webkit-text-stroke:1px var(--border);pointer-events:none;line-height:1;}
   .hero-tag{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
   .hero-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent);}
@@ -219,7 +220,7 @@
     <div class="stat-card"><div class="stat-num">Sub 2:30</div><div class="stat-label">Tiempo meta</div></div>
     <div class="stat-card"><div class="stat-num">80'</div><div class="stat-label">Gym máx.</div></div>
   </div>
-  <div class="scroll-hint">▼ Explorá el plan</div>
+  <div class="scroll-hint"><a href="#overview">▼ Explorá el plan</a></div>
 </div>
 
 <nav>
