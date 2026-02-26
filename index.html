@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Atleta Híbrido — 21K 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3e;
+    --accent: #e8ff47;
+    --accent2: #47b4ff;
+    --accent3: #ff6b47;
+    --text: #e8e8f0;
+    --text-muted: #7070a0;
+    --run-color: #47b4ff;
+    --gym-color: #e8ff47;
+    --rest-color: #3a3a4e;
+    --push-color: #ff6b47;
+    --pull-color: #b047ff;
+    --legs-color: #47ffb4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* HEADER */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '21K';
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(12rem, 25vw, 22rem);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    max-width: 800px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    min-width: 120px;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0 1rem;
+  }
+
+  nav button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav button:hover { color: var(--text); }
+  nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  section.visible { display: block; }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin-top: 0.75rem;
+  }
+
+  /* ======= WEEKLY OVERVIEW ======= */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .day-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .day-pill .day-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .day-pill .day-type {
+    margin-top: 0.4rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+
+  .day-pill.run { border-color: var(--run-color); }
+  .day-pill.run .day-type { color: var(--run-color); }
+  .day-pill.push { border-color: var(--push-color); }
+  .day-pill.push .day-type { color: var(--push-color); }
+  .day-pill.pull { border-color: var(--pull-color); }
+  .day-pill.pull .day-type { color: var(--pull-color); }
+  .day-pill.legs { border-color: var(--legs-color); }
+  .day-pill.legs .day-type { color: var(--legs-color); }
+  .day-pill.rest .day-type { color: var(--text-muted); }
+
+  /* ======= WHY PPL ======= */
+  .why-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 2rem;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .why-box strong { color: var(--accent); font-weight: 500; }
+
+  /* ======= GYM SECTION ======= */
+  .gym-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .gym-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .gym-tab:hover { color: var(--text); border-color: var(--text-muted); }
+  .gym-tab.active.push { color: var(--push-color); border-color: var(--push-color); background: rgba(255,107,71,0.08); }
+  .gym-tab.active.pull { color: var(--pull-color); border-color: var(--pull-color); background: rgba(176,71,255,0.08); }
+  .gym-tab.active.legs { color: var(--legs-color); border-color: var(--legs-color); background: rgba(71,255,180,0.08); }
+
+  .gym-day { display: none; }
+  .gym-day.visible { display: block; }
+
+  .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .exercise-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+
+  .exercise-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exercise-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(42,42,62,0.5);
+    font-size: 0.9rem;
+    vertical-align: top;
+  }
+
+  .exercise-table tr:last-child td { border-bottom: none; }
+  .exercise-table tr:hover td { background: var(--surface); }
+
+  .ex-name { font-weight: 500; color: var(--text); }
+  .ex-sets {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .ex-note { font-size: 0.8rem; color: var(--text-muted); }
+
+  .block-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .block-label.fuerza { background: rgba(232,255,71,0.12); color: var(--accent); }
+  .block-label.hipertrofia { background: rgba(71,180,255,0.12); color: var(--accent2); }
+  .block-label.core { background: rgba(176,71,255,0.12); color: var(--pull-color); }
+  .block-label.movilidad { background: rgba(71,255,180,0.12); color: var(--legs-color); }
+
+  .time-block {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .time-block .t { color: var(--accent); font-weight: 500; }
+
+  /* ======= RUNNING SECTION ======= */
+  .block-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .block-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .block-btn:hover { color: var(--text); }
+  .block-btn.active { color: var(--accent2); border-color: var(--accent2); background: rgba(71,180,255,0.08); }
+
+  .running-block { display: none; }
+  .running-block.visible { display: block; }
+
+  .block-description {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .block-description strong { color: var(--accent2); }
+
+  .week-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .week-card:hover { border-color: var(--accent2); }
+
+  .week-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    gap: 1rem;
+  }
+
+  .week-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--accent2);
+    min-width: 90px;
+  }
+
+  .week-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    flex: 1;
+  }
+
+  .week-vol {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .week-toggle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+  }
+
+  .week-card.open .week-toggle { transform: rotate(180deg); }
+
+  .week-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .week-card.open .week-body { display: block; }
+
+  .session-row {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(42,42,62,0.4);
+  }
+
+  .session-row:last-child { border-bottom: none; }
+
+  .session-day {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .session-day .cal-date {
+    font-size: 0.65rem;
+    opacity: 0.6;
+    display: block;
+    margin-top: 0.1rem;
+  }
+
+  .session-desc { font-size: 0.88rem; }
+  .session-desc .s-main { font-weight: 500; color: var(--text); }
+  .session-desc .s-sub { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.15rem; }
+
+  .pace-badge {
+    background: rgba(71,180,255,0.1);
+    border: 1px solid rgba(71,180,255,0.3);
+    color: var(--accent2);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .pace-badge .pace-val { display: block; font-size: 0.85rem; font-weight: 500; }
+  .pace-badge .pace-label { display: block; font-size: 0.6rem; opacity: 0.7; margin-top: 0.1rem; }
+
+  .reduction-badge {
+    background: rgba(255,107,71,0.1);
+    border: 1px solid rgba(255,107,71,0.3);
+    color: var(--accent3);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .race-week { border-color: var(--accent) !important; }
+  .race-week .week-num { color: var(--accent); }
+
+  /* ======= RULES ======= */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .rule-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rule-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--border);
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  }
+
+  .rule-title {
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    position: relative;
+  }
+
+  .rule-body {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    position: relative;
+  }
+
+  /* ======= NUTRITION ======= */
+  .nutri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .nutri-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+
+  .nutri-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .nutri-title { font-weight: 500; margin-bottom: 0.5rem; }
+  .nutri-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+  .nutri-highlight { color: var(--accent); font-weight: 500; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .session-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .week-header { flex-wrap: wrap; }
+    .exercise-table { font-size: 0.82rem; }
+    .exercise-table th, .exercise-table td { padding: 0.6rem 0.5rem; }
+    h1 { font-size: 3rem; }
+    .hero::after { display: none; }
+  }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Plan personalizado · Inicio 2 Mar 2026</div>
+  <h1>ATLETA<em>HÍBRIDO</em></h1>
+  <p class="hero-sub">Físico definido + Medio Maratón. 24 semanas de entrenamiento inteligente que combina fuerza y resistencia sin sacrificar ninguna.</p>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">24</div>
+      <div class="stat-label">Semanas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">21K</div>
+      <div class="stat-label">Objetivo</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Días/semana</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">80'</div>
+      <div class="stat-label">Gym máx.</div>
+    </div>
+  </div>
+  <div class="scroll-hint">▼ Explorá el plan</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <button class="active" onclick="showSection('overview')">Resumen</button>
+  <button onclick="showSection('gym')">Gimnasio</button>
+  <button onclick="showSection('running')">Running</button>
+  <button onclick="showSection('nutrition')">Nutrición</button>
+  <button onclick="showSection('rules')">Reglas de oro</button>
+</nav>
+
+<!-- ===================== OVERVIEW ===================== -->
+<section id="overview" class="visible">
+  <div class="section-header">
+    <div class="section-tag">Vista semanal</div>
+    <h2>ESTRUCTURA DE LA SEMANA</h2>
+    <p class="section-desc">Tu semana tipo: 3 días de gimnasio + 2/3 días de running + 1 descanso activo.</p>
+  </div>
+
+  <div class="week-grid">
+    <div class="day-pill push">
+      <div class="day-name">Lunes</div>
+      <div class="day-type">Push</div>
+    </div>
+    <div class="day-pill pull">
+      <div class="day-name">Martes</div>
+      <div class="day-type">Pull</div>
+    </div>
+    <div class="day-pill run">
+      <div class="day-name">Miérc.</div>
+      <div class="day-type">Run Suave</div>
+    </div>
+    <div class="day-pill legs">
+      <div class="day-name">Jueves</div>
+      <div class="day-type">Legs</div>
+    </div>
+    <div class="day-pill run">
+      <div class="day-name">Viernes</div>
+      <div class="day-type">Run Calidad</div>
+    </div>
+    <div class="day-pill run">
+      <div class="day-name">Sábado</div>
+      <div class="day-type">Long Run</div>
+    </div>
+    <div class="day-pill rest">
+      <div class="day-name">Domingo</div>
+      <div class="day-type">Descanso</div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.5rem;margin-bottom:2rem;">
+    <h3 style="font-size:1.2rem;margin-bottom:1rem;color:var(--text);">🗓 Cronograma</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;font-size:0.85rem;">
+      <div><span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;display:block;text-transform:uppercase;letter-spacing:0.1em;">Inicio</span>2 de marzo 2026</div>
+      <div><span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;display:block;text-transform:uppercase;letter-spacing:0.1em;">Primer 21K de práctica</span>Semana 17 · ~22 jun 2026</div>
+      <div><span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;display:block;text-transform:uppercase;letter-spacing:0.1em;">Carrera objetivo</span>Semana 24 · ~17 ago 2026</div>
+      <div><span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;display:block;text-transform:uppercase;letter-spacing:0.1em;">Bloques</span>4 bloques de 6 semanas</div>
+    </div>
+  </div>
+
+  <div class="why-box">
+    <strong>¿Por qué Push / Pull / Legs para un atleta híbrido?</strong><br><br>
+    Con solo <strong>3 días de gym y máximo 80 minutos</strong>, PPL es la estructura más eficiente porque divide el trabajo muscular de forma que cada grupo se recupera mientras entrenás otro. Comparado con torso/pierna: PPL da mayor volumen por grupo (más series de pecho en un día de Push puro vs compartir el día con espalda), mejor recuperación entre sesiones de running y gym, y permite enfocarte completamente en los patrones de empuje, tirón y sentadilla/bisagra sin fatiga acumulada de otros músculos. Para un híbrido específicamente, el día de Legs hace doble trabajo: construye músculo <em>y</em> fortalece los patrones neuromusculares que usás corriendo. Los ejercicios fueron seleccionados para maximizar relación músculo trabajado / tiempo invertido — priorizando movimientos compuestos que reclutan más fibras.
+  </div>
+</section>
+
+<!-- ===================== GYM ===================== -->
+<section id="gym">
+  <div class="section-header">
+    <div class="section-tag">3 días · Máx. 80 min</div>
+    <h2>PLAN DE GIMNASIO</h2>
+    <p class="section-desc">Push/Pull/Legs optimizado para máxima eficiencia. Cada sesión está dividida en bloques de tiempo.</p>
+  </div>
+
+  <div class="gym-tabs">
+    <button class="gym-tab active push" onclick="showGym('push')">🔴 Lunes — Push</button>
+    <button class="gym-tab pull" onclick="showGym('pull')">🟣 Martes — Pull</button>
+    <button class="gym-tab legs" onclick="showGym('legs')">🟢 Jueves — Legs</button>
+  </div>
+
+  <!-- PUSH -->
+  <div id="gym-push" class="gym-day visible">
+    <div class="time-badge">⏱ Duración estimada: 70–80 min</div>
+    <div style="margin-bottom:1.5rem;color:var(--text-muted);font-size:0.88rem;line-height:1.7;">
+      El foco del día Push es pecho, hombros y tríceps. Arrancás con los movimientos más pesados cuando el sistema nervioso está fresco, luego bajás a aislación. Descansá <strong style="color:var(--text);">90–120 seg</strong> en ejercicios de fuerza y <strong style="color:var(--text);">60 seg</strong> en los de hipertrofia.
+    </div>
+
+    <div class="block-label fuerza">Bloque 1 — Fuerza (0–25 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Press banca plano (barra)</span></td><td class="ex-sets">4 × 5–6</td><td class="ex-note">Carga alta. El movimiento base. Pausa 2 min entre series.</td></tr>
+        <tr><td><span class="ex-name">Press militar (barra de pie)</span></td><td class="ex-sets">3 × 6–8</td><td class="ex-note">Pausa 90 seg. Core apretado, no arquees la lumbar.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-label hipertrofia">Bloque 2 — Hipertrofia (25–55 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Press inclinado mancuernas</span></td><td class="ex-sets">3 × 10–12</td><td class="ex-note">Pausa 60 seg. Enfocate en la bajada controlada (3 seg).</td></tr>
+        <tr><td><span class="ex-name">Fondos en paralelas</span></td><td class="ex-sets">3 × 10–12</td><td class="ex-note">Ligero lean hacia adelante para pecho. Añadí lastre si es fácil.</td></tr>
+        <tr><td><span class="ex-name">Elevaciones laterales mancuernas</span></td><td class="ex-sets">4 × 12–15</td><td class="ex-note">Movimiento controlado. Sin impulso. 60 seg pausa.</td></tr>
+        <tr><td><span class="ex-name">Extensión tríceps polea alta</span></td><td class="ex-sets">3 × 12–15</td><td class="ex-note">Codos fijos. Podés hacer cuerda o barra recta.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-label core">Bloque 3 — Core (55–70 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Plancha RKC</span></td><td class="ex-sets">3 × 20–30 seg</td><td class="ex-note">Máxima contracción, no es plancha pasiva. Apretá todo.</td></tr>
+        <tr><td><span class="ex-name">Pallof press (polea)</span></td><td class="ex-sets">3 × 10 c/lado</td><td class="ex-note">Core antirotacional. Fundamental para running estable.</td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:rgba(255,107,71,0.06);border:1px solid rgba(255,107,71,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);">
+      💡 <strong style="color:var(--push-color);">Tip Push:</strong> Si el gimnasio está muy lleno y no conseguís banca, empezá por press inclinado mancuernas y movés el press plano para más adelante. La jerarquía de ejercicios es orientativa, no inamovible.
+    </div>
+  </div>
+
+  <!-- PULL -->
+  <div id="gym-pull" class="gym-day">
+    <div class="time-badge">⏱ Duración estimada: 70–80 min</div>
+    <div style="margin-bottom:1.5rem;color:var(--text-muted);font-size:0.88rem;line-height:1.7;">
+      El día Pull trabaja espalda y bíceps con énfasis en dominadas y remo horizontal. También tiene el <strong style="color:var(--text);">core más intenso de la semana</strong> (ab wheel), que es clave para la postura en el running largo. Descansá <strong style="color:var(--text);">90–120 seg</strong> en los compuestos.
+    </div>
+
+    <div class="block-label fuerza">Bloque 1 — Fuerza (0–25 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Dominadas (agarre neutro o prono)</span></td><td class="ex-sets">4 × 5–8</td><td class="ex-note">Si hacés más de 8 fácil, usá lastre. Si no llegás a 5, asistencia.</td></tr>
+        <tr><td><span class="ex-name">Remo con barra (Pendlay o inclinado)</span></td><td class="ex-sets">4 × 6–8</td><td class="ex-note">Espalda paralela al piso. Barra toca el abdomen. 90 seg pausa.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-label hipertrofia">Bloque 2 — Hipertrofia (25–55 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Jalón al pecho agarre cerrado</span></td><td class="ex-sets">3 × 10–12</td><td class="ex-note">Complementa dominadas. Enfocate en el cierre de escápulas.</td></tr>
+        <tr><td><span class="ex-name">Remo en polea baja sentado</span></td><td class="ex-sets">3 × 10–12</td><td class="ex-note">Agarre neutro. Tirá con los codos, no con las manos.</td></tr>
+        <tr><td><span class="ex-name">Face pulls (polea alta + cuerda)</span></td><td class="ex-sets">3 × 15</td><td class="ex-note">Salud de hombros. Imprescindible para compensar el Push.</td></tr>
+        <tr><td><span class="ex-name">Curl bíceps alterno mancuernas</span></td><td class="ex-sets">3 × 10–12</td><td class="ex-note">Supinación completa en la subida.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-label core">Bloque 3 — Core (55–70 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Ab wheel (rueda abdominal)</span></td><td class="ex-sets">3 × 8–12</td><td class="ex-note">El ejercicio de core más efectivo. Empezá desde arrodillado.</td></tr>
+        <tr><td><span class="ex-name">Plancha lateral con elevación</span></td><td class="ex-sets">3 × 8 c/lado</td><td class="ex-note">Cadera arriba, levantá pierna superior. Estabilidad lateral.</td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:rgba(176,71,255,0.06);border:1px solid rgba(176,71,255,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);">
+      💡 <strong style="color:var(--pull-color);">Tip Pull:</strong> Las dominadas son el ejercicio más importante de este día. Priorizalas siempre. Si llegás al gym y ya hay gente en la barra, empezá con el remo con barra mientras esperás, pero no las saltes.
+    </div>
+  </div>
+
+  <!-- LEGS -->
+  <div id="gym-legs" class="gym-day">
+    <div class="time-badge">⏱ Duración estimada: 75–80 min</div>
+    <div style="margin-bottom:1.5rem;color:var(--text-muted);font-size:0.88rem;line-height:1.7;">
+      El día de piernas es el más importante del plan híbrido. No solo construye músculo: <strong style="color:var(--text);">cada ejercicio tiene un correlato directo con el running</strong>. RDL = isquios y potencia de zancada. Hip thrust = glúteo motor. Gemelos = absorción de impacto. Zancadas = estabilidad unilateral. Descansá <strong style="color:var(--text);">2 min</strong> en sentadilla y peso muerto.
+    </div>
+
+    <div class="block-label fuerza">Bloque 1 — Fuerza (0–30 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Sentadilla trasera (barra)</span></td><td class="ex-sets">4 × 5–6</td><td class="ex-note">Rey de las piernas. Profundidad completa. Pausa 2 min.</td></tr>
+        <tr><td><span class="ex-name">Peso muerto rumano (RDL)</span></td><td class="ex-sets">3 × 8–10</td><td class="ex-note">Isquios bajo tensión. Sentí el estiramiento, no solo la carga.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-label hipertrofia">Bloque 2 — Hipertrofia funcional (30–60 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Hip thrust (barra o mancuernas)</span></td><td class="ex-sets">4 × 10–12</td><td class="ex-note">Glúteo máximo = motor principal al correr. No lo negocies.</td></tr>
+        <tr><td><span class="ex-name">Zancadas caminando + mancuernas</span></td><td class="ex-sets">3 × 12 c/pierna</td><td class="ex-note">Movimiento unilateral. Activa estabilizadores del running.</td></tr>
+        <tr><td><span class="ex-name">Elevación de talones de pie</span></td><td class="ex-sets">4 × 20</td><td class="ex-note">Gemelos. Prevención de lesiones. Hacé rango completo.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-label core">Bloque 3 — Core funcional (60–75 min)</div>
+    <table class="exercise-table">
+      <thead><tr><th>Ejercicio</th><th>Series × Reps</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex-name">Dead bug</span></td><td class="ex-sets">3 × 10 c/lado</td><td class="ex-note">Core de runner por excelencia. Espalda pegada al piso siempre.</td></tr>
+        <tr><td><span class="ex-name">Copenhagen plank</span></td><td class="ex-sets">3 × 15–20 seg c/lado</td><td class="ex-note">Aductores + estabilidad de cadera. Protege las rodillas al correr.</td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:rgba(71,255,180,0.06);border:1px solid rgba(71,255,180,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);">
+      💡 <strong style="color:var(--legs-color);">Tip Legs:</strong> Este día es el más demandante. Asegurate de comer bien antes. Si jueves cae un día que corriste mucho el miércoles y las piernas están pesadas, hacé igual la sentadilla pero con un 10–15% menos de carga. No lo saltes.
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RUNNING ===================== -->
+<section id="running">
+  <div class="section-header">
+    <div class="section-tag">24 semanas · 4 bloques</div>
+    <h2>PLAN DE RUNNING</h2>
+    <p class="section-desc">Progresión hacia el 21K con fechas exactas, distancias y ritmos objetivo para cada sesión.</p>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;font-size:0.83rem;">
+    <div><span style="color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.65rem;display:block;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Suave (Zona 2)</span>6:00–6:30 /km · Podés hablar</div>
+    <div><span style="color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.65rem;display:block;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Tempo</span>5:10–5:25 /km · Incómodo pero controlado</div>
+    <div><span style="color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.65rem;display:block;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Series 400m</span>4:40–4:50 /km · Duro</div>
+    <div><span style="color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.65rem;display:block;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Series 800–1500m</span>4:50–5:05 /km · Fuerte</div>
+    <div><span style="color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.65rem;display:block;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem;">Long run</span>6:00–6:30 /km · Siempre suave</div>
+  </div>
+
+  <div class="block-nav">
+    <button class="block-btn active" onclick="showBlock(1)">Bloque 1 · Sem 1–6</button>
+    <button class="block-btn" onclick="showBlock(2)">Bloque 2 · Sem 7–12</button>
+    <button class="block-btn" onclick="showBlock(3)">Bloque 3 · Sem 13–18</button>
+    <button class="block-btn" onclick="showBlock(4)">Bloque 4 · Taper</button>
+  </div>
+
+  <!-- BLOCK 1 -->
+  <div id="block-1" class="running-block visible">
+    <div class="block-description">
+      <strong>Bloque 1 — Construcción de base aeróbica</strong><br>
+      Todo suave. El objetivo es acostumbrar tendones, ligamentos y el sistema cardiovascular al volumen de running. No hay velocidad todavía. Si algo duele (no el cansancio normal), bajá la carga. Al final de este bloque deberías sentir los 10km como algo manejable.
+    </div>
+    <div id="weeks-block1"></div>
+  </div>
+
+  <!-- BLOCK 2 -->
+  <div id="block-2" class="running-block">
+    <div class="block-description">
+      <strong>Bloque 2 — Introducción de calidad</strong><br>
+      Aparecen las primeras sesiones de series el viernes. Son el catalizador de la mejora: entrenan el sistema neuromuscular a correr más eficientemente. El 80% del volumen sigue siendo suave. Las long runs crecen hacia los 16km.
+    </div>
+    <div id="weeks-block2"></div>
+  </div>
+
+  <!-- BLOCK 3 -->
+  <div id="block-3" class="running-block">
+    <div class="block-description">
+      <strong>Bloque 3 — Volumen máximo y especificidad</strong><br>
+      La tirada larga se acerca a la distancia de carrera. La semana 17 vas a correr 21km por primera vez. Va a ser lento, incómodo y largo. Eso es exactamente lo que tiene que pasar. Tu cuerpo está aprendiendo a gestionar el glucógeno y la fatiga acumulada.
+    </div>
+    <div id="weeks-block3"></div>
+  </div>
+
+  <!-- BLOCK 4 -->
+  <div id="block-4" class="running-block">
+    <div class="block-description">
+      <strong>Bloque 4 — Taper (puesta a punto)</strong><br>
+      Bajás el volumen pero mantenés algo de intensidad. El cuerpo "carga" para la carrera. Vas a sentir que estás descansado y con ganas. Es normal sentir ansiedad en las últimas 2 semanas. Confiá en el trabajo hecho.
+    </div>
+    <div id="weeks-block4"></div>
+  </div>
+</section>
+
+<!-- ===================== NUTRITION ===================== -->
+<section id="nutrition">
+  <div class="section-header">
+    <div class="section-tag">Combustible del híbrido</div>
+    <h2>NUTRICIÓN</h2>
+    <p class="section-desc">Tu alimentación ya está ordenada. Estos son los ajustes específicos para el atleta híbrido.</p>
+  </div>
+
+  <div class="nutri-grid">
+    <div class="nutri-card" style="border-color:rgba(232,255,71,0.3);">
+      <div class="nutri-icon">🥩</div>
+      <div class="nutri-title">Proteína — Tu prioridad #1</div>
+      <div class="nutri-body">Para mantener músculo mientras aumentás el volumen de running necesitás <span class="nutri-highlight">1.8–2.2g de proteína por kg de peso corporal</span> por día. Sin esto, el running va a comerse el músculo. Distribuila en 4–5 comidas.</div>
+    </div>
+    <div class="nutri-card" style="border-color:rgba(71,180,255,0.3);">
+      <div class="nutri-icon">🍚</div>
+      <div class="nutri-title">Carbohidratos — No los recortes</div>
+      <div class="nutri-body">Son el combustible del runner. Los días de long run y día de legs necesitás <span class="nutri-highlight">más carbos</span> (arroz, avena, papa, pasta). Los días de descanso podés reducirlos moderadamente.</div>
+    </div>
+    <div class="nutri-card" style="border-color:rgba(255,107,71,0.3);">
+      <div class="nutri-icon">⚡</div>
+      <div class="nutri-title">Déficit calórico — Moderado</div>
+      <div class="nutri-body">Para definir sin perder rendimiento: <span class="nutri-highlight">no más de 300–400 kcal de déficit</span> diario. La definición va a venir principalmente del volumen de running, no de comer menos.</div>
+    </div>
+    <div class="nutri-card" style="border-color:rgba(71,255,180,0.3);">
+      <div class="nutri-icon">🍌</div>
+      <div class="nutri-title">Pre Long Run</div>
+      <div class="nutri-body">Comé carbos <span class="nutri-highlight">60–90 min antes</span>: avena con banana, tostadas con miel o mermelada. Lo que tolerés bien. Nunca estrenes alimentos el día de carrera.</div>
+    </div>
+    <div class="nutri-card" style="border-color:rgba(176,71,255,0.3);">
+      <div class="nutri-icon">🍬</div>
+      <div class="nutri-title">Geles — Empezá a practicar</div>
+      <div class="nutri-body">A partir de los 14–15km en el long run, empezá a practicar con <span class="nutri-highlight">geles energéticos o gomitas</span>. El intestino necesita entrenamiento. No estrenes el día de la carrera.</div>
+    </div>
+    <div class="nutri-card" style="border-color:rgba(232,255,71,0.15);">
+      <div class="nutri-icon">💤</div>
+      <div class="nutri-title">Sueño — El suplemento real</div>
+      <div class="nutri-body"><span class="nutri-highlight">7–8 horas</span> por noche. Es cuando construís músculo y recuperás del running. La creatina, proteína de suero y demás suplementos son secundarios si el sueño falla.</div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:6px;">
+    <h3 style="font-size:1.1rem;margin-bottom:1rem;">Día a día: ¿Cuánto comer?</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;font-size:0.83rem;color:var(--text-muted);">
+      <div style="background:var(--surface2);padding:0.9rem;border-radius:4px;border:1px solid var(--border);">
+        <strong style="color:var(--push-color);display:block;margin-bottom:0.4rem;">Día Push/Pull</strong>
+        Mantenimiento calórico o leve superávit (+200). Carbos moderados, proteína alta.
+      </div>
+      <div style="background:var(--surface2);padding:0.9rem;border-radius:4px;border:1px solid var(--border);">
+        <strong style="color:var(--legs-color);display:block;margin-bottom:0.4rem;">Día Legs</strong>
+        Comer más. Carbos altos pre y post. Tu cuerpo va a necesitar el combustible.
+      </div>
+      <div style="background:var(--surface2);padding:0.9rem;border-radius:4px;border:1px solid var(--border);">
+        <strong style="color:var(--run-color);display:block;margin-bottom:0.4rem;">Día Long Run</strong>
+        Carbos altos el día previo (carga pasiva). Día de carrera: desayuno rico en carbos 90 min antes.
+      </div>
+      <div style="background:var(--surface2);padding:0.9rem;border-radius:4px;border:1px solid var(--border);">
+        <strong style="color:var(--text-muted);display:block;margin-bottom:0.4rem;">Día Descanso</strong>
+        Déficit moderado. Podés bajar carbos levemente. Proteína siempre alta.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RULES ===================== -->
+<section id="rules">
+  <div class="section-header">
+    <div class="section-tag">Principios fundamentales</div>
+    <h2>LAS REGLAS DE ORO</h2>
+    <p class="section-desc">Estas 6 reglas determinan el 80% del éxito del plan. Si las respetás, llegás al 21K.</p>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card"><div class="rule-num">01</div><div class="rule-title">El 80% del running es suave</div><div class="rule-body">Si podés hablar en oraciones completas mientras corrés, estás bien. Si no podés, bajá el ritmo. La zona 2 construye el motor aeróbico sin dañar el músculo. Más rápido no siempre es mejor.</div></div>
+    <div class="rule-card"><div class="rule-num">02</div><div class="rule-title">Regla del 10%</div><div class="rule-body">Nunca aumentes el volumen semanal de running más de un 10% respecto a la semana anterior. Las semanas de reducción cada 6 semanas son obligatorias. La recuperación es parte del entrenamiento.</div></div>
+    <div class="rule-card"><div class="rule-num">03</div><div class="rule-title">Dormí 7–8 horas</div><div class="rule-body">Es cuando construís músculo y recuperás del running. No hay suplemento que reemplace el sueño. Si elegís entre dormir o madrugar para entrenar, dormí.</div></div>
+    <div class="rule-card"><div class="rule-num">04</div><div class="rule-title">Long run ≠ día de piernas</div><div class="rule-body">El día después de la tirada larga descansá o hacé movilidad suave. No hagas gimnasio de piernas el domingo. Las piernas necesitan al menos 48 horas para recuperar de una tirada larga.</div></div>
+    <div class="rule-card"><div class="rule-num">05</div><div class="rule-title">Escuchá al cuerpo</div><div class="rule-body">Una molestia ignorada se convierte en lesión. El dolor muscular difuso y el cansancio son normales. El dolor puntual en articulaciones, tendones o rodillas es una señal de parar y revisar.</div></div>
+    <div class="rule-card"><div class="rule-num">06</div><div class="rule-title">Proteína todos los días</div><div class="rule-body">El entrenamiento híbrido con déficit calórico es catabólico. Sin 1.8–2.2g/kg de proteína diaria, el volumen de running va a consumir el músculo que construiste en el gym. No hay días de vacaciones de la proteína.</div></div>
+  </div>
+</section>
+
+<script>
+// ========== NAVIGATION ==========
+function showSection(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
+  document.getElementById(id).classList.add('visible');
+  document.querySelectorAll('nav button').forEach((b, i) => {
+    const ids = ['overview','gym','running','nutrition','rules'];
+    b.classList.toggle('active', ids[i] === id);
+  });
+  window.scrollTo({top: document.querySelector('nav').offsetTop - 10, behavior: 'smooth'});
+}
+
+// ========== GYM TABS ==========
+function showGym(day) {
+  ['push','pull','legs'].forEach(d => {
+    document.getElementById('gym-'+d).classList.toggle('visible', d === day);
+  });
+  document.querySelectorAll('.gym-tab').forEach(b => {
+    b.classList.remove('active');
+    if (b.textContent.toLowerCase().includes(day)) b.classList.add('active');
+  });
+}
+
+// ========== RUNNING DATA ==========
+const startDate = new Date(2026, 2, 2); // March 2, 2026
+
+function addDays(date, days) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+function fmt(date) {
+  const days = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
+}
+
+// Week start = Monday of that week
+function weekStart(weekNum) {
+  return addDays(startDate, (weekNum - 1) * 7);
+}
+
+const runningData = [
+  // BLOCK 1
+  { week: 1, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 4, pace: '6:15', notes: 'Primer rodaje. Muy tranquilo. Evaluá sensaciones.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 4, pace: '6:15', notes: 'Igual al miércoles. Sin presión.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 8, pace: '6:20', notes: 'Primera tirada larga. Siempre suave.' }
+  ]},
+  { week: 2, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 5, pace: '6:15', notes: 'Ritmo conversacional.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 4, pace: '6:15', notes: 'Mantené el ritmo bajo.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 9, pace: '6:20', notes: 'Añadís 1km a la tirada. Sin apuros.' }
+  ]},
+  { week: 3, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 5, pace: '6:15', notes: 'Zona 2 pura.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 5, pace: '6:15', notes: 'Podés explorar una ruta nueva.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 10, pace: '6:20', notes: 'Los 10km. Ya superás tu máximo.' }
+  ]},
+  { week: 4, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 5, pace: '6:15', notes: 'Rodaje suave.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 5, pace: '6:15', notes: 'Rodaje suave.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 11, pace: '6:20', notes: 'Empezá a prestar atención a la hidratación.' }
+  ]},
+  { week: 5, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 6, pace: '6:10', notes: 'Tu ritmo puede ser un poco más fluido ya.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 5, pace: '6:10', notes: 'Rodaje suave.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 12, pace: '6:20', notes: '12km. Semana de mayor carga del bloque.' }
+  ]},
+  { week: 6, reduction: true, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 4, pace: '6:15', notes: '⬇ Semana reducción. Piernas descansadas.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 4, pace: '6:15', notes: 'Suave y corto.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 8, pace: '6:20', notes: 'Long run corta. Cargás para el bloque 2.' }
+  ]},
+  // BLOCK 2
+  { week: 7, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 6, pace: '6:10', notes: 'Rodaje suave, vuelta al volumen.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 5.5, pace: '4:45', notes: '5 × 400m · Pausa 90 seg trotando. Calentá 1km, enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 12, pace: '6:20', notes: 'Long run. Piernas pesadas del viernes: normal.' }
+  ]},
+  { week: 8, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 6, pace: '6:10', notes: 'Zona 2.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 6, pace: '4:55', notes: '4 × 800m · Pausa 2 min. Calentá 1km, enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 13, pace: '6:20', notes: '13km. Primera vez en esta distancia.' }
+  ]},
+  { week: 9, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 7, pace: '6:10', notes: 'Rodaje suave.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 7, pace: '5:00', notes: '3 × 1500m · Pausa 2:30 min. Calentá 1km, enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 14, pace: '6:20', notes: 'A partir de acá, llevá agua.' }
+  ]},
+  { week: 10, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 7, pace: '6:10', notes: 'Zona 2.' },
+    { dayOffset: 4, label: 'Viernes', type: 'tempo', dist: 7, pace: '5:20', notes: '5km a ritmo tempo (5:20) + 1km calentamiento + 1km enfriamiento.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 15, pace: '6:20', notes: '15km. Semana bisagra — el running empieza a sentirse.' }
+  ]},
+  { week: 11, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 8, pace: '6:10', notes: 'Rodaje suave.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 7, pace: '5:00', notes: '4 × 1000m · Pausa 2 min. Calentá 1km, enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 16, pace: '6:20', notes: '16km. Semana de pico del bloque 2.' }
+  ]},
+  { week: 12, reduction: true, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 5, pace: '6:10', notes: '⬇ Semana reducción.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 4, pace: '6:15', notes: 'Muy suave.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 10, pace: '6:20', notes: 'Long run corta. Recargás para el bloque más duro.' }
+  ]},
+  // BLOCK 3
+  { week: 13, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 8, pace: '6:05', notes: 'Rodaje suave. Ritmo ya más fluido.' },
+    { dayOffset: 4, label: 'Viernes', type: 'tempo', dist: 8, pace: '5:15', notes: '6km tempo (5:15) + 1km calent. + 1km enfriam.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 17, pace: '6:20', notes: '17km. Territorio nuevo.' }
+  ]},
+  { week: 14, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 8, pace: '6:05', notes: 'Zona 2.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 8, pace: '4:55', notes: '5 × 1000m · Pausa 2 min. Calentá y enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 18, pace: '6:20', notes: '18km. Llevá gel si tenés. Probá en carrera.' }
+  ]},
+  { week: 15, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 9, pace: '6:05', notes: 'Rodaje suave.' },
+    { dayOffset: 4, label: 'Viernes', type: 'tempo', dist: 9, pace: '5:15', notes: '7km tempo (5:15) + 1km calent. + 1km enfriam.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 19, pace: '6:20', notes: '19km. Ya estás a 2km del objetivo de carrera.' }
+  ]},
+  { week: 16, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 9, pace: '6:05', notes: 'Zona 2.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 9.5, pace: '4:55', notes: '5 × 1200m · Pausa 2:30 min. Calentá y enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 20, pace: '6:20', notes: '20km. El entreno psicológico más importante.' }
+  ]},
+  { week: 17, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 9, pace: '6:05', notes: 'Rodaje tranquilo.' },
+    { dayOffset: 4, label: 'Viernes', type: 'tempo', dist: 10, pace: '5:15', notes: '8km tempo (5:15) + 1km calent. + 1km enfriam.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 21, pace: '6:20', notes: '🎯 PRIMER 21K. Muy suave. Solo terminar. Es un ensayo.' }
+  ]},
+  { week: 18, reduction: true, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 6, pace: '6:10', notes: '⬇ Semana reducción post-pico.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 5, pace: '6:10', notes: 'Muy suave. Recuperación activa.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 12, pace: '6:20', notes: 'Long run moderada. Recuperás del 21K.' }
+  ]},
+  // BLOCK 4
+  { week: 19, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 7, pace: '6:05', notes: 'Volvés al volumen, ya con la base construida.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 8, pace: '4:50', notes: '6 × 800m · Pausa 90 seg. Calentá y enfriá 1km.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 16, pace: '6:20', notes: 'Long run moderada. Confianza en la distancia.' }
+  ]},
+  { week: 20, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 6, pace: '6:05', notes: 'Rodaje suave. Empezá el taper.' },
+    { dayOffset: 4, label: 'Viernes', type: 'tempo', dist: 7, pace: '5:15', notes: '5km tempo (5:15) + 1km calent. + 1km enfriam.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 14, pace: '6:20', notes: 'Long run bajando. Te sentís bien: normal.' }
+  ]},
+  { week: 21, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 6, pace: '6:05', notes: 'Zona 2.' },
+    { dayOffset: 4, label: 'Viernes', type: 'series', dist: 7, pace: '4:55', notes: '4 × 1000m · Pausa 2 min. Últimas series antes de carrera.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 12, pace: '6:20', notes: '12km. Ya casi. Confiá en el proceso.' }
+  ]},
+  { week: 22, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 5, pace: '6:10', notes: 'Muy suave. Piernas cargadas para la carrera.' },
+    { dayOffset: 4, label: 'Viernes', type: 'tempo', dist: 6, pace: '5:20', notes: '4km tempo (5:20) + 1km calent. + 1km enfriam.' },
+    { dayOffset: 5, label: 'Sábado', type: 'long', dist: 10, pace: '6:20', notes: 'Última tirada larga. Ya estás listo.' }
+  ]},
+  { week: 23, reduction: false, sessions: [
+    { dayOffset: 2, label: 'Miércoles', type: 'suave', dist: 4, pace: '6:15', notes: 'Rodaje muy suave. Últimos días antes de carrera.' },
+    { dayOffset: 4, label: 'Viernes', type: 'suave', dist: 3, pace: '6:15', notes: 'Rodaje corto. Movete pero no te canses.' },
+    { dayOffset: 5, label: 'Sábado', type: 'suave', dist: 8, pace: '6:20', notes: 'Último rodaje. Visualizá la carrera.' }
+  ]},
+  { week: 24, reduction: false, race: true, sessions: [
+    { dayOffset: 1, label: 'Martes', type: 'suave', dist: 3, pace: '6:15', notes: 'Rodaje corto de activación. Sin esfuerzo.' },
+    { dayOffset: 6, label: 'Domingo', type: 'race', dist: 21.1, pace: '—', notes: '🏁 DÍA DE CARRERA. Confiá en el trabajo. Disfrutalo.' }
+  ]},
+];
+
+const typeColors = { suave: '#47b4ff', tempo: '#e8ff47', series: '#ff6b47', long: '#b047ff', race: '#e8ff47' };
+const typeLabels = { suave: 'Suave', tempo: 'Tempo', series: 'Series', long: 'Long Run', race: '🏁 CARRERA' };
+
+function buildRunning() {
+  const blocks = { 1: [], 2: [], 3: [], 4: [] };
+  runningData.forEach(w => {
+    const b = w.week <= 6 ? 1 : w.week <= 12 ? 2 : w.week <= 18 ? 3 : 4;
+    blocks[b].push(w);
+  });
+
+  [1, 2, 3, 4].forEach(b => {
+    const container = document.getElementById('weeks-block' + b);
+    blocks[b].forEach(w => {
+      const ws = weekStart(w.week);
+      const we = addDays(ws, 6);
+      const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      const dateRange = `${ws.getDate()} ${months[ws.getMonth()]} — ${we.getDate()} ${months[we.getMonth()]} ${we.getFullYear()}`;
+      const totalKm = w.sessions.reduce((a, s) => a + s.dist, 0).toFixed(1);
+
+      const card = document.createElement('div');
+      card.className = 'week-card' + (w.race ? ' race-week' : '');
+      
+      let sessionsHTML = '';
+      w.sessions.forEach(s => {
+        const sessionDate = addDays(ws, s.dayOffset);
+        const dateStr = fmt(sessionDate);
+        const col = typeColors[s.type] || '#e8e8f0';
+        const lbl = typeLabels[s.type] || s.type;
+        const paceHTML = s.pace === '—' ? `<div class="pace-badge" style="border-color:rgba(232,255,71,0.5);background:rgba(232,255,71,0.1);"><span class="pace-val" style="color:#e8ff47;">¡HOY!</span></div>` :
+          `<div class="pace-badge"><span class="pace-val">${s.pace}/km</span><span class="pace-label">${s.dist}km obj.</span></div>`;
+
+        sessionsHTML += `<div class="session-row">
+          <div class="session-day">
+            <span style="color:${col};font-weight:500;">${s.label}</span>
+            <span class="cal-date">${dateStr}</span>
+          </div>
+          <div class="session-desc">
+            <span class="s-main" style="color:${col};">${lbl} · ${s.dist}km</span>
+            <div class="s-sub">${s.notes}</div>
+          </div>
+          ${paceHTML}
+        </div>`;
+      });
+
+      card.innerHTML = `
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-num">SEM ${w.week}</div>
+          <div class="week-date">${dateRange}${w.reduction ? ' <span class="reduction-badge">REDUCCIÓN</span>' : ''}</div>
+          <div class="week-vol">${totalKm} km</div>
+          <div class="week-toggle">▼</div>
+        </div>
+        <div class="week-body">${sessionsHTML}</div>`;
+      
+      container.appendChild(card);
+    });
+  });
+}
+
+function toggleWeek(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+function showBlock(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById('block-'+i).classList.toggle('visible', i === n);
+  });
+  document.querySelectorAll('.block-btn').forEach((b, i) => b.classList.toggle('active', i === n-1));
+}
+
+// INIT
+buildRunning();
+</script>
+</body>
+</html>
