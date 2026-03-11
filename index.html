@@ -4,48 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plan Atleta Híbrido — 21K 2026</title>
-
-<!-- PWA para iOS -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Plan Híbrido 21K">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a0f">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-180.png">
-<link rel="icon" type="image/png" sizes="16x16" href="icon-180.png">
-<link rel="apple-touch-icon" href="icon-180.png">
-  
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ─── PALETA ───────────────────────────────────────────────────────────────
+     Fondo: blanco puro + crema muy suave
+     Acento principal: naranja-coral vibrante (#F25C2A) — energético, deportivo
+     Acento 2: azul índigo (#2563EB) — running, agua
+     Acento 3: verde pizarra (#059669) — legs, completado
+     Tipografía: casi negro (#111827) sobre blancos
+  ──────────────────────────────────────────────────────────────────────────── */
   :root {
-    --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a26; --border:#2a2a3e;
-    --accent:#e8ff47; --accent2:#47b4ff; --accent3:#ff6b47;
-    --text:#e8e8f0; --text-muted:#7070a0;
-    --push-color:#ff6b47; --pull-color:#b047ff; --legs-color:#47ffb4; --run-color:#47b4ff;
+    --bg:#F8F7F4;
+    --surface:#FFFFFF;
+    --surface2:#F3F2EE;
+    --border:#E5E3DC;
+    --accent:#F25C2A;
+    --accent2:#2563EB;
+    --accent3:#DC2626;
+    --text:#111827;
+    --text-muted:#6B7280;
+    --push-color:#F25C2A;
+    --pull-color:#7C3AED;
+    --legs-color:#059669;
+    --run-color:#2563EB;
   }
+
   *{margin:0;padding:0;box-sizing:border-box;}
-  html {scroll-behavior: smooth;}
-  a {color: inherit; text-decoration: none;}  
   body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
-  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
 
   /* HERO */
-  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:2rem 2rem 2rem 4rem;position:relative;overflow:hidden;}
-  .hero::after{content:'21K';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(12rem,25vw,22rem);color:transparent;-webkit-text-stroke:1px var(--border);pointer-events:none;line-height:1;}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem 2rem;position:relative;overflow:hidden;background:linear-gradient(150deg,#fff 0%,#F8F7F4 50%,#EEF0F8 100%);}
+  .hero::after{content:'21K';position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(12rem,25vw,22rem);color:transparent;-webkit-text-stroke:1.5px #E5E3DC;pointer-events:none;line-height:1;}
   .hero-tag{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
   .hero-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--accent);}
-  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7rem);line-height:0.95;letter-spacing:0.02em;max-width:800px;}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7rem);line-height:0.95;letter-spacing:0.02em;max-width:800px;color:var(--text);}
   h1 em{font-style:normal;color:var(--accent);display:block;}
   .hero-sub{margin-top:2rem;font-size:1rem;color:var(--text-muted);max-width:500px;font-weight:300;}
-  .hero-stats{display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap;}
-  .stat-card{background:var(--surface);border:1px solid var(--border);padding:1rem 1.5rem;border-radius:4px;min-width:120px;}
+  .hero-stats{display:flex;gap:1rem;margin-top:3rem;flex-wrap:wrap;}
+  .stat-card{background:#fff;border:1.5px solid var(--border);padding:1rem 1.5rem;border-radius:10px;min-width:120px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
   .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;color:var(--accent);}
   .stat-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.25rem;}
-  .scroll-hint{position:absolute;bottom:2rem;left: 50%;transform: translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:0.7rem;color:var(--accent);letter-spacing:0.5em;text-transform:uppercase;animation:pulse 2s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .scroll-hint{position:absolute;bottom:2rem;left:2rem;font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.9}}
 
   /* NAV */
-  nav{position:sticky;top:0;background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:100;display:flex;overflow-x:auto;padding:0 1rem;}
+  nav{position:sticky;top:0;background:rgba(248,247,244,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:100;display:flex;overflow-x:auto;padding:0 1rem;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
   nav button{background:none;border:none;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;padding:1.1rem 1.25rem;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s;}
   nav button:hover{color:var(--text);}
   nav button.active{color:var(--accent);border-bottom-color:var(--accent);}
@@ -54,150 +57,152 @@
   section{padding:5rem 2rem;max-width:1100px;margin:0 auto;display:none;}
   section.visible{display:block;}
   .section-tag{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem;}
-  h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1;letter-spacing:0.02em;}
-  h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.05em;margin-bottom:1rem;}
+  h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1;letter-spacing:0.02em;color:var(--text);}
+  h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.05em;margin-bottom:1rem;color:var(--text);}
   .section-desc{color:var(--text-muted);font-size:0.95rem;max-width:600px;margin-top:0.75rem;margin-bottom:3rem;}
 
   /* OVERVIEW */
   .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0.5rem;margin-bottom:2rem;}
-  .day-pill{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0.75rem 0.5rem;text-align:center;}
+  .day-pill{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:0.85rem 0.5rem;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
   .day-pill .day-name{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;}
-  .day-pill .day-type{margin-top:0.4rem;font-weight:500;font-size:0.8rem;}
-  .day-pill.run{border-color:var(--run-color);} .day-pill.run .day-type{color:var(--run-color);}
-  .day-pill.push{border-color:var(--push-color);} .day-pill.push .day-type{color:var(--push-color);}
-  .day-pill.pull{border-color:var(--pull-color);} .day-pill.pull .day-type{color:var(--pull-color);}
-  .day-pill.legs{border-color:var(--legs-color);} .day-pill.legs .day-type{color:var(--legs-color);}
+  .day-pill .day-type{margin-top:0.4rem;font-weight:600;font-size:0.82rem;}
+  .day-pill.run{border-color:var(--run-color);background:rgba(37,99,235,0.04);} .day-pill.run .day-type{color:var(--run-color);}
+  .day-pill.push{border-color:var(--push-color);background:rgba(242,92,42,0.04);} .day-pill.push .day-type{color:var(--push-color);}
+  .day-pill.pull{border-color:var(--pull-color);background:rgba(124,58,237,0.04);} .day-pill.pull .day-type{color:var(--pull-color);}
+  .day-pill.legs{border-color:var(--legs-color);background:rgba(5,150,105,0.04);} .day-pill.legs .day-type{color:var(--legs-color);}
   .day-pill.rest .day-type{color:var(--text-muted);}
-  .why-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.5rem 2rem;border-radius:0 4px 4px 0;margin-bottom:2rem;font-size:0.95rem;line-height:1.8;}
-  .why-box strong{color:var(--accent);font-weight:500;}
+  .why-box{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);padding:1.5rem 2rem;border-radius:0 8px 8px 0;margin-bottom:1.5rem;font-size:0.95rem;line-height:1.8;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+  .why-box strong{color:var(--accent);font-weight:600;}
 
   /* GYM TABS */
   .gym-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap;}
-  .gym-tab{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.25rem;cursor:pointer;border-radius:2px;transition:all 0.2s;}
-  .gym-tab:hover{color:var(--text);}
-  .gym-tab.active.legs{color:var(--legs-color);border-color:var(--legs-color);background:rgba(71,255,180,0.08);}
-  .gym-tab.active.push{color:var(--push-color);border-color:var(--push-color);background:rgba(255,107,71,0.08);}
-  .gym-tab.active.pull{color:var(--pull-color);border-color:var(--pull-color);background:rgba(176,71,255,0.08);}
+  .gym-tab{background:#fff;border:1.5px solid var(--border);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1.25rem;cursor:pointer;border-radius:6px;transition:all 0.2s;font-weight:500;}
+  .gym-tab:hover{color:var(--text);border-color:#aaa;}
+  .gym-tab.active.legs{color:var(--legs-color);border-color:var(--legs-color);background:rgba(5,150,105,0.07);}
+  .gym-tab.active.push{color:var(--push-color);border-color:var(--push-color);background:rgba(242,92,42,0.07);}
+  .gym-tab.active.pull{color:var(--pull-color);border-color:var(--pull-color);background:rgba(124,58,237,0.07);}
   .gym-day{display:none;}
   .gym-day.visible{display:block;}
-  .time-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--surface2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:20px;font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent);margin-bottom:1rem;}
-  .block-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:2px;display:inline-block;margin-bottom:0.5rem;margin-top:1.5rem;}
-  .block-label.fuerza{background:rgba(232,255,71,0.12);color:var(--accent);}
-  .block-label.hipertrofia{background:rgba(71,180,255,0.12);color:var(--accent2);}
-  .block-label.core{background:rgba(176,71,255,0.12);color:var(--pull-color);}
+  .time-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.2);padding:0.4rem 0.9rem;border-radius:20px;font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--accent2);}
+  .block-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.7rem;border-radius:4px;display:inline-block;margin-bottom:0.5rem;margin-top:1.5rem;font-weight:500;}
+  .block-label.fuerza{background:rgba(242,92,42,0.1);color:#C04010;}
+  .block-label.hipertrofia{background:rgba(37,99,235,0.08);color:#1D4ED8;}
+  .block-label.core{background:rgba(124,58,237,0.08);color:#6D28D9;}
 
   /* DAY HEADER ROW */
   .day-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;}
-  .reset-day-btn{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,107,71,0.08);border:1px solid rgba(255,107,71,0.3);color:var(--accent3);font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.45rem 0.9rem;border-radius:3px;cursor:pointer;transition:all 0.2s;}
-  .reset-day-btn:hover{background:rgba(255,107,71,0.16);border-color:var(--accent3);}
+  .reset-day-btn{display:inline-flex;align-items:center;gap:0.4rem;background:#fff;border:1.5px solid #FCA5A5;color:#DC2626;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.45rem 0.9rem;border-radius:6px;cursor:pointer;transition:all 0.2s;}
+  .reset-day-btn:hover{background:#FEF2F2;border-color:#DC2626;}
 
   /* EXERCISE TABLE */
   .ex-table-header{display:grid;grid-template-columns:2fr 110px 85px 1fr 34px;gap:0.5rem;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border);margin-top:0.25rem;}
   .ex-table-header span{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;}
-  .ex-row{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin-bottom:0.4rem;overflow:hidden;}
-  .ex-main-row{display:grid;grid-template-columns:2fr 110px 85px 1fr 34px;gap:0.5rem;align-items:center;padding:0.85rem 0.75rem;cursor:pointer;transition:background 0.15s;}
-  .ex-main-row:hover{background:var(--surface2);}
-  .ex-nm{font-weight:500;font-size:0.88rem;}
-  .ex-sr{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--accent);}
+  .ex-row{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:0.5rem;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05);transition:box-shadow 0.2s;}
+  .ex-row:hover{box-shadow:0 3px 12px rgba(0,0,0,0.09);}
+  .ex-main-row{display:grid;grid-template-columns:2fr 110px 85px 1fr 34px;gap:0.5rem;align-items:center;padding:0.9rem 0.85rem;cursor:pointer;transition:background 0.15s;border-radius:8px 8px 0 0;}
+  .ex-main-row:hover{background:#FAFAF8;}
+  .ex-nm{font-weight:500;font-size:0.88rem;color:var(--text);}
+  .ex-sr{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--accent);font-weight:600;}
   .ex-rs{font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--accent2);}
   .ex-nt{font-size:0.78rem;color:var(--text-muted);line-height:1.4;}
   .ex-arr{color:var(--text-muted);font-size:0.85rem;text-align:center;transition:transform 0.2s;user-select:none;}
   .ex-row.open .ex-arr{transform:rotate(180deg);}
 
   /* SERIES PANEL */
-  .series-panel{display:none;border-top:1px solid var(--border);padding:0.85rem 0.75rem;background:rgba(5,5,10,0.5);}
+  .series-panel{display:none;border-top:1px solid var(--border);padding:1rem 0.85rem;background:#FAFAF8;}
   .ex-row.open .series-panel{display:block;}
   .series-chips{display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center;margin-bottom:0.75rem;}
-  .chip{display:flex;align-items:center;gap:0.45rem;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:0.42rem 0.7rem;cursor:pointer;transition:all 0.18s;user-select:none;font-size:0.82rem;color:var(--text-muted);}
-  .chip:hover{border-color:var(--text-muted);color:var(--text);}
-  .chip.done{background:rgba(232,255,71,0.1);border-color:var(--accent);color:var(--accent);}
-  .chip .ck{width:13px;height:13px;border:1.5px solid currentColor;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;}
+  .chip{display:flex;align-items:center;gap:0.45rem;background:#fff;border:1.5px solid var(--border);border-radius:6px;padding:0.42rem 0.75rem;cursor:pointer;transition:all 0.18s;user-select:none;font-size:0.82rem;color:var(--text-muted);font-weight:400;}
+  .chip:hover{border-color:var(--accent);color:var(--text);}
+  .chip.done{background:rgba(5,150,105,0.07);border-color:var(--legs-color);color:var(--legs-color);font-weight:500;}
+  .chip .ck{width:14px;height:14px;border:1.5px solid currentColor;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;}
   .chip.done .ck::before{content:'✓';}
-  .rest-chip{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(71,180,255,0.1);border:1px solid rgba(71,180,255,0.3);color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.72rem;padding:0.42rem 0.8rem;border-radius:3px;cursor:pointer;transition:all 0.18s;white-space:nowrap;}
-  .rest-chip:hover{background:rgba(71,180,255,0.2);}
+  .rest-chip{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(37,99,235,0.06);border:1.5px solid rgba(37,99,235,0.2);color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.72rem;padding:0.42rem 0.85rem;border-radius:6px;cursor:pointer;transition:all 0.18s;white-space:nowrap;font-weight:500;}
+  .rest-chip:hover{background:rgba(37,99,235,0.12);}
   .prog-line{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text-muted);margin-bottom:0.75rem;}
-  .prog-line.done{color:var(--accent);}
+  .prog-line.done{color:var(--legs-color);font-weight:600;}
 
   /* KG INPUT ROW */
-  .kg-row{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;padding-top:0.75rem;border-top:1px solid rgba(42,42,62,0.5);}
+  .kg-row{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;padding-top:0.85rem;border-top:1px solid var(--border);}
   .kg-label{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;}
-  .kg-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:0.82rem;padding:0.35rem 0.6rem;border-radius:3px;width:80px;outline:none;transition:border-color 0.2s;}
+  .kg-input{background:#fff;border:1.5px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:0.82rem;padding:0.38rem 0.65rem;border-radius:6px;width:85px;outline:none;transition:border-color 0.2s;}
   .kg-input:focus{border-color:var(--accent);}
   .kg-input::placeholder{color:var(--text-muted);opacity:0.5;}
-  .kg-save-btn{background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.3);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.35rem 0.75rem;border-radius:3px;cursor:pointer;transition:all 0.18s;white-space:nowrap;}
-  .kg-save-btn:hover{background:rgba(232,255,71,0.16);}
-  .kg-saved{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--legs-color);opacity:0;transition:opacity 0.3s;}
+  .kg-save-btn{background:rgba(242,92,42,0.08);border:1.5px solid rgba(242,92,42,0.35);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;transition:all 0.18s;white-space:nowrap;font-weight:500;}
+  .kg-save-btn:hover{background:rgba(242,92,42,0.15);}
+  .kg-saved{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--legs-color);opacity:0;transition:opacity 0.3s;font-weight:500;}
   .kg-saved.show{opacity:1;}
-  .kg-history{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent2);margin-left:0.25rem;}
 
   /* TIMER */
-  .t-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.87);backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;}
+  .t-overlay{position:fixed;inset:0;background:rgba(17,24,39,0.6);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:center;justify-content:center;}
   .t-overlay.on{display:flex;}
-  .t-modal{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2.5rem 2.5rem 2rem;text-align:center;min-width:300px;position:relative;}
-  .t-close{position:absolute;top:0.9rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;}
+  .t-modal{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2.5rem 2.5rem 2rem;text-align:center;min-width:300px;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.18);}
+  .t-close{position:absolute;top:1rem;right:1.1rem;background:none;border:none;color:var(--text-muted);font-size:1.2rem;cursor:pointer;line-height:1;}
   .t-close:hover{color:var(--text);}
   .t-tag{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.5rem;}
   .t-exname{font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;max-width:220px;margin-left:auto;margin-right:auto;}
   .t-ring{width:190px;height:190px;margin:0 auto 1rem;position:relative;}
   .t-ring svg{transform:rotate(-90deg);}
-  .t-ring .bg-c{stroke:var(--border);fill:none;stroke-width:5;}
-  .t-ring .fg-c{fill:none;stroke-width:5;stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset 1s linear,stroke 0.3s;}
+  .t-ring .bg-c{stroke:#E5E3DC;fill:none;stroke-width:6;}
+  .t-ring .fg-c{fill:none;stroke-width:6;stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset 1s linear,stroke 0.3s;}
   .t-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
   .t-display{font-family:'Bebas Neue',sans-serif;font-size:5.5rem;line-height:1;color:var(--accent);letter-spacing:0.05em;transition:color 0.3s;}
-  .t-display.warn{color:var(--accent3);}
+  .t-display.warn{color:#DC2626;}
   .t-display.fin{color:var(--legs-color);}
-  .t-msg{font-size:0.85rem;color:var(--legs-color);height:1.2em;margin-top:0.5rem;}
+  .t-msg{font-size:0.85rem;color:var(--legs-color);height:1.2em;margin-top:0.5rem;font-weight:600;}
   .t-btns{display:flex;gap:0.6rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap;}
-  .t-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;padding:0.55rem 1.1rem;border-radius:3px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
-  .t-btn:hover{border-color:var(--text-muted);}
-  .t-btn.pri{background:rgba(232,255,71,0.1);border-color:var(--accent);color:var(--accent);}
-  .t-btn.pri:hover{background:rgba(232,255,71,0.2);}
+  .t-btn{background:#F3F2EE;border:1.5px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;padding:0.55rem 1.1rem;border-radius:6px;cursor:pointer;transition:all 0.2s;text-transform:uppercase;font-weight:500;}
+  .t-btn:hover{border-color:var(--text-muted);background:#EAEAE5;}
+  .t-btn.pri{background:rgba(242,92,42,0.08);border-color:var(--accent);color:var(--accent);}
+  .t-btn.pri:hover{background:rgba(242,92,42,0.16);}
 
   /* RUNNING */
   .block-nav{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap;}
-  .block-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;padding:0.5rem 1rem;cursor:pointer;border-radius:2px;transition:all 0.2s;}
-  .block-btn:hover{color:var(--text);}
-  .block-btn.active{color:var(--accent2);border-color:var(--accent2);background:rgba(71,180,255,0.08);}
+  .block-btn{background:#fff;border:1.5px solid var(--border);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;padding:0.5rem 1rem;cursor:pointer;border-radius:6px;transition:all 0.2s;font-weight:500;}
+  .block-btn:hover{color:var(--text);border-color:#aaa;}
+  .block-btn.active{color:var(--accent2);border-color:var(--accent2);background:rgba(37,99,235,0.07);}
   .run-block{display:none;}
   .run-block.visible{display:block;}
-  .block-desc{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);padding:1.25rem 1.5rem;border-radius:0 4px 4px 0;margin-bottom:2rem;font-size:0.9rem;color:var(--text-muted);}
+  .block-desc{background:rgba(37,99,235,0.04);border:1px solid rgba(37,99,235,0.15);border-left:4px solid var(--accent2);padding:1.25rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2rem;font-size:0.9rem;color:var(--text-muted);}
   .block-desc strong{color:var(--accent2);}
-  .wk-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:1rem;overflow:hidden;transition:border-color 0.2s;}
-  .wk-card:hover{border-color:var(--accent2);}
+  .wk-card{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:0.75rem;overflow:hidden;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+  .wk-card:hover{border-color:rgba(37,99,235,0.3);box-shadow:0 4px 16px rgba(37,99,235,0.08);}
   .wk-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;gap:1rem;flex-wrap:wrap;}
   .wk-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--accent2);min-width:90px;}
   .wk-date{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--text-muted);flex:1;}
-  .wk-vol{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--accent);white-space:nowrap;}
+  .wk-vol{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--accent);font-weight:600;white-space:nowrap;}
   .wk-arr{color:var(--text-muted);font-size:1.2rem;transition:transform 0.2s;}
   .wk-card.open .wk-arr{transform:rotate(180deg);}
   .wk-body{display:none;padding:0 1.25rem 1.25rem;border-top:1px solid var(--border);}
   .wk-card.open .wk-body{display:block;}
-  .sess-row{display:grid;grid-template-columns:140px 1fr auto;gap:1rem;align-items:start;padding:0.9rem 0;border-bottom:1px solid rgba(42,42,62,0.4);}
+  .sess-row{display:grid;grid-template-columns:140px 1fr auto;gap:1rem;align-items:start;padding:0.9rem 0;border-bottom:1px solid #F3F2EE;}
   .sess-row:last-child{border-bottom:none;}
   .sess-day{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--text-muted);}
-  .sess-day .cal{font-size:0.65rem;opacity:0.6;display:block;margin-top:0.1rem;}
-  .sess-main{font-weight:500;}
-  .sess-sub{color:var(--text-muted);font-size:0.8rem;margin-top:0.15rem;}
-  .pace-badge{background:rgba(71,180,255,0.1);border:1px solid rgba(71,180,255,0.3);color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.72rem;padding:0.3rem 0.6rem;border-radius:3px;white-space:nowrap;text-align:center;}
-  .pace-badge .pv{display:block;font-size:0.85rem;font-weight:500;}
+  .sess-day .cal{font-size:0.65rem;opacity:0.7;display:block;margin-top:0.1rem;}
+  .sess-main{font-weight:600;font-size:0.9rem;}
+  .sess-sub{color:var(--text-muted);font-size:0.82rem;margin-top:0.2rem;line-height:1.5;}
+  .pace-badge{background:#F0F5FF;border:1px solid rgba(37,99,235,0.2);color:var(--accent2);font-family:'DM Mono',monospace;font-size:0.72rem;padding:0.35rem 0.65rem;border-radius:6px;white-space:nowrap;text-align:center;}
+  .pace-badge .pv{display:block;font-size:0.85rem;font-weight:600;}
   .pace-badge .pl{display:block;font-size:0.6rem;opacity:0.7;margin-top:0.1rem;}
-  .red-badge{background:rgba(255,107,71,0.1);border:1px solid rgba(255,107,71,0.3);color:var(--accent3);font-family:'DM Mono',monospace;font-size:0.65rem;padding:0.2rem 0.5rem;border-radius:2px;display:inline-block;margin-left:0.5rem;}
-  .race-wk{border-color:var(--accent)!important;}
+  .red-badge{background:#FEF3C7;border:1px solid #FCD34D;color:#92400E;font-family:'DM Mono',monospace;font-size:0.65rem;padding:0.2rem 0.55rem;border-radius:4px;display:inline-block;margin-left:0.5rem;font-weight:500;}
+  .race-wk{border-color:var(--accent)!important;box-shadow:0 2px 12px rgba(242,92,42,0.12)!important;}
   .race-wk .wk-num{color:var(--accent);}
 
   /* NUTRITION */
   .nutri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-bottom:2rem;}
-  .nutri-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:4px;}
+  .nutri-card{background:#fff;border:1px solid var(--border);padding:1.5rem;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:box-shadow 0.2s;}
+  .nutri-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08);}
   .nutri-icon{font-size:1.75rem;margin-bottom:0.75rem;}
-  .nutri-title{font-weight:500;margin-bottom:0.5rem;}
+  .nutri-title{font-weight:600;margin-bottom:0.5rem;color:var(--text);}
   .nutri-body{font-size:0.85rem;color:var(--text-muted);line-height:1.6;}
-  .nh{color:var(--accent);font-weight:500;}
+  .nh{color:var(--accent);font-weight:600;}
 
   /* RULES */
   .rules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
-  .rule-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:4px;position:relative;overflow:hidden;}
-  .rule-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;color:var(--border);position:absolute;top:0.5rem;right:1rem;}
-  .rule-title{font-weight:500;color:var(--accent);margin-bottom:0.5rem;font-size:0.95rem;position:relative;}
+  .rule-card{background:#fff;border:1px solid var(--border);padding:1.75rem;border-radius:10px;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:box-shadow 0.2s;}
+  .rule-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+  .rule-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;color:#F3F2EE;position:absolute;top:0.5rem;right:1rem;}
+  .rule-title{font-weight:600;color:var(--accent);margin-bottom:0.5rem;font-size:0.95rem;position:relative;}
   .rule-body{font-size:0.85rem;color:var(--text-muted);line-height:1.6;position:relative;}
 
   @media(max-width:700px){
@@ -223,7 +228,7 @@
     <div class="stat-card"><div class="stat-num">Sub 2:30</div><div class="stat-label">Tiempo meta</div></div>
     <div class="stat-card"><div class="stat-num">80'</div><div class="stat-label">Gym máx.</div></div>
   </div>
-  <div class="scroll-hint"><a href="#overview">▼ Explorá el plan ▼</a></div>
+  <div class="scroll-hint">▼ Explorá el plan</div>
 </div>
 
 <nav>
@@ -272,7 +277,7 @@
     <div class="day-pill rest"><div class="day-name">Domingo</div><div class="day-type">Descanso</div></div>
   </div>
   <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--legs-color);border-radius:0 6px 6px 0;padding:1.25rem 1.5rem;margin-bottom:2rem;font-size:0.9rem;color:var(--text-muted);line-height:1.7;">
-    <strong style="color:var(--legs-color);">¿Por qué Legs el Lunes?</strong> — Con running el miércoles y viernes/sábado, el jueves quedaba encajonado entre dos sesiones de carrera: el peor momento para exigir las piernas en serio. Al moverlo al lunes, las piernas tienen <strong style="color:var(--text);">domingo + martes (upper body) + miércoles de trote suave</strong> antes de cualquier running exigente.
+    <strong style="color:var(--legs-color);">¿Por qué Legs el Lunes?</strong> — Con running el miércoles y viernes/sábado, el jueves quedaba encajonado entre dos sesiones de carrera: el peor momento para exigir las piernas en serio. Al moverlo al lunes, las piernas tienen <strong style="color:var(--text);font-weight:600;">domingo + martes (upper body) + miércoles de trote suave</strong> antes de cualquier running exigente.
   </div>
   <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;padding:1.25rem 1.5rem;margin-bottom:2rem;font-size:0.9rem;color:var(--text-muted);line-height:1.7;">
     <strong style="color:var(--accent);">Objetivo: Sub 2:30 en el 21K</strong> — Eso significa correr a <strong style="color:var(--text);">~7:06/km promedio</strong> durante 21.1km. Con tu base de 5:40–6:00/km en 7km el camino es construir resistencia aeróbica, no velocidad. Las sesiones de long run y tempo están diseñadas para que puedas mantener 6:40–6:50/km sostenido durante 2+ horas. El tiempo va a llegar solo si construís la base correctamente.
@@ -309,14 +314,14 @@
       <div class="time-badge" style="margin-bottom:0;">⏱ Duración estimada: 75–80 min</div>
       <button class="reset-day-btn" onclick="resetDay('legs')">↺ Reiniciar día</button>
     </div>
-    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0.5rem;">Lunes estratégico: máxima recuperación antes del running. Cada ejercicio tiene correlato directo con la economía de carrera. Empezá pesado con el sistema nervioso fresco.</p>
+    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0.5rem;">Adaptado a tu equipamiento real. Prensa como base de fuerza (ya la conocés), RDL nuevo como trabajo de isquios funcional, hip thrust nuevo como prioridad para glúteo. Las extensiones de cuádriceps pasan al final en menor volumen — no tienen transferencia directa al running. Las cargas de referencia de tu rutina anterior están anotadas en cada ejercicio.</p>
     <div class="block-label fuerza">Bloque 1 — Fuerza (0–30 min)</div>
     <div id="c-legs-1"></div>
     <div class="block-label hipertrofia">Bloque 2 — Hipertrofia funcional (30–60 min)</div>
     <div id="c-legs-2"></div>
     <div class="block-label core">Bloque 3 — Core funcional (60–75 min)</div>
     <div id="c-legs-3"></div>
-    <div style="background:rgba(71,255,180,0.06);border:1px solid rgba(71,255,180,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);margin-top:1rem;">💡 <strong style="color:var(--legs-color);">Tip:</strong> Si las piernas están muy pesadas del long run del fin de semana, hacé sentadilla con 10–15% menos de carga. Nunca lo saltes.</div>
+    <div style="background:rgba(5,150,105,0.05);border:1px solid rgba(5,150,105,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);margin-top:1rem;">💡 <strong style="color:var(--legs-color);">Tip:</strong> Si las piernas están muy pesadas del long run del fin de semana, hacé sentadilla con 10–15% menos de carga. Nunca lo saltes.</div>
   </div>
 
   <!-- PUSH -->
@@ -325,14 +330,14 @@
       <div class="time-badge" style="margin-bottom:0;">⏱ Duración estimada: 70–80 min</div>
       <button class="reset-day-btn" onclick="resetDay('push')">↺ Reiniciar día</button>
     </div>
-    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0.5rem;">Martes de Push: pecho, hombros y tríceps. Sistema nervioso fresco después del lunes de piernas. Arrancás con los movimientos más pesados y bajás a aislación.</p>
+    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0.5rem;">Martes de Push: pecho, hombros y tríceps. Tu rutina anterior tenía 4 ejercicios solo de hombros — demasiado para un atleta híbrido. Ahora hay 1 press de pecho, 1 press de hombro, 1 lateral y 2 de tríceps. Más efectivo, en menos tiempo. <strong style="color:var(--push-color);">Si algún martes querés hacer CrossFit en su lugar, este es el día indicado — es el de menor impacto sobre el running.</strong></p>
     <div class="block-label fuerza">Bloque 1 — Fuerza (0–25 min)</div>
     <div id="c-push-1"></div>
     <div class="block-label hipertrofia">Bloque 2 — Hipertrofia (25–55 min)</div>
     <div id="c-push-2"></div>
     <div class="block-label core">Bloque 3 — Core (55–70 min)</div>
     <div id="c-push-3"></div>
-    <div style="background:rgba(255,107,71,0.06);border:1px solid rgba(255,107,71,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);margin-top:1rem;">💡 <strong style="color:var(--push-color);">Tip:</strong> Si no conseguís banca, empezá por press inclinado mancuernas. La jerarquía es orientativa, no inamovible.</div>
+    <div style="background:rgba(242,92,42,0.05);border:1px solid rgba(242,92,42,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);margin-top:1rem;">💡 <strong style="color:var(--push-color);">Tip:</strong> Si no conseguís banca, empezá por press inclinado mancuernas. La jerarquía es orientativa, no inamovible.</div>
   </div>
 
   <!-- PULL -->
@@ -341,14 +346,14 @@
       <div class="time-badge" style="margin-bottom:0;">⏱ Duración estimada: 70–80 min</div>
       <button class="reset-day-btn" onclick="resetDay('pull')">↺ Reiniciar día</button>
     </div>
-    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0.5rem;">Jueves de Pull: espalda y bíceps. Tiene el core más intenso de la semana (ab wheel), clave para mantener postura en las tiradas largas. Priorizá siempre las dominadas.</p>
+    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;margin-bottom:0.5rem;">Jueves de Pull: espalda y bíceps. Tu rutina anterior mezclaba espalda con pecho (peck deck, cristos máquina) — eso se elimina. Ahora es Pull puro: dominadas primero cuando estás fresco, luego jalones, remo, face pulls y bíceps. El core al final. Sin mezcla, sin solapamiento con el martes.</p>
     <div class="block-label fuerza">Bloque 1 — Fuerza (0–25 min)</div>
     <div id="c-pull-1"></div>
     <div class="block-label hipertrofia">Bloque 2 — Hipertrofia (25–55 min)</div>
     <div id="c-pull-2"></div>
     <div class="block-label core">Bloque 3 — Core (55–70 min)</div>
     <div id="c-pull-3"></div>
-    <div style="background:rgba(176,71,255,0.06);border:1px solid rgba(176,71,255,0.2);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);margin-top:1rem;">💡 <strong style="color:var(--pull-color);">Tip:</strong> Las dominadas son el ejercicio más importante del día. Si hacés más de 8 fácil, usá lastre. Si no llegás a 5, usá asistencia — pero hacelas siempre.</div>
+    <div style="background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.15);padding:1rem 1.25rem;border-radius:4px;font-size:0.83rem;color:var(--text-muted);margin-top:1rem;">💡 <strong style="color:var(--pull-color);">Tip:</strong> Las dominadas son el ejercicio más importante del día. Si hacés más de 8 fácil, usá lastre. Si no llegás a 5, usá asistencia — pero hacelas siempre.</div>
   </div>
 </section>
 
@@ -386,12 +391,12 @@
   <h2>NUTRICIÓN</h2>
   <p class="section-desc">Tu alimentación ya está ordenada. Estos son los ajustes específicos para el atleta híbrido con objetivo Sub 2:30.</p>
   <div class="nutri-grid">
-    <div class="nutri-card" style="border-color:rgba(232,255,71,0.3);"><div class="nutri-icon">🥩</div><div class="nutri-title">Proteína — Tu prioridad #1</div><div class="nutri-body">Para mantener músculo mientras aumentás el volumen de running: <span class="nh">1.8–2.2g de proteína por kg de peso corporal</span> por día. Sin esto, el running va a comerse el músculo del gym.</div></div>
-    <div class="nutri-card" style="border-color:rgba(71,180,255,0.3);"><div class="nutri-icon">🍚</div><div class="nutri-title">Carbohidratos — No los recortes</div><div class="nutri-body">Son el combustible del runner. Los días de long run y día de Legs necesitás <span class="nh">más carbos</span> (arroz, avena, papa, pasta). Los días de descanso podés reducirlos moderadamente.</div></div>
-    <div class="nutri-card" style="border-color:rgba(255,107,71,0.3);"><div class="nutri-icon">⚡</div><div class="nutri-title">Déficit calórico — Moderado</div><div class="nutri-body">Para definir sin perder rendimiento: <span class="nh">no más de 300–400 kcal de déficit</span> diario. La definición viene del volumen de running, no de comer menos.</div></div>
-    <div class="nutri-card" style="border-color:rgba(71,255,180,0.3);"><div class="nutri-icon">🍌</div><div class="nutri-title">Pre Long Run</div><div class="nutri-body">Comé carbos <span class="nh">60–90 min antes</span>: avena con banana, tostadas con miel. Lo que tolerés bien. Nunca estrenes alimentos el día de carrera.</div></div>
-    <div class="nutri-card" style="border-color:rgba(176,71,255,0.3);"><div class="nutri-icon">🍬</div><div class="nutri-title">Geles — Practicar desde sem 14</div><div class="nutri-body">A partir de los 15km en el long run, practicá con <span class="nh">geles o gomitas energéticas</span>. Para el 21K vas a necesitar 2–3 geles. El intestino se entrena.</div></div>
-    <div class="nutri-card" style="border-color:rgba(232,255,71,0.15);"><div class="nutri-icon">💤</div><div class="nutri-title">Sueño — El suplemento real</div><div class="nutri-body"><span class="nh">7–8 horas</span> por noche. Es cuando construís músculo y recuperás del running. Ningún suplemento lo reemplaza.</div></div>
+    <div class="nutri-card" style="border-color:rgba(242,92,42,0.3);"><div class="nutri-icon">🥩</div><div class="nutri-title">Proteína — Tu prioridad #1</div><div class="nutri-body">Para mantener músculo mientras aumentás el volumen de running: <span class="nh">1.8–2.2g de proteína por kg de peso corporal</span> por día. Sin esto, el running va a comerse el músculo del gym.</div></div>
+    <div class="nutri-card" style="border-color:rgba(37,99,235,0.25);"><div class="nutri-icon">🍚</div><div class="nutri-title">Carbohidratos — No los recortes</div><div class="nutri-body">Son el combustible del runner. Los días de long run y día de Legs necesitás <span class="nh">más carbos</span> (arroz, avena, papa, pasta). Los días de descanso podés reducirlos moderadamente.</div></div>
+    <div class="nutri-card" style="border-color:rgba(242,92,42,0.3);"><div class="nutri-icon">⚡</div><div class="nutri-title">Déficit calórico — Moderado</div><div class="nutri-body">Para definir sin perder rendimiento: <span class="nh">no más de 300–400 kcal de déficit</span> diario. La definición viene del volumen de running, no de comer menos.</div></div>
+    <div class="nutri-card" style="border-color:rgba(5,150,105,0.3);"><div class="nutri-icon">🍌</div><div class="nutri-title">Pre Long Run</div><div class="nutri-body">Comé carbos <span class="nh">60–90 min antes</span>: avena con banana, tostadas con miel. Lo que tolerés bien. Nunca estrenes alimentos el día de carrera.</div></div>
+    <div class="nutri-card" style="border-color:rgba(124,58,237,0.25);"><div class="nutri-icon">🍬</div><div class="nutri-title">Geles — Practicar desde sem 14</div><div class="nutri-body">A partir de los 15km en el long run, practicá con <span class="nh">geles o gomitas energéticas</span>. Para el 21K vas a necesitar 2–3 geles. El intestino se entrena.</div></div>
+    <div class="nutri-card" style="border-color:rgba(242,92,42,0.12);"><div class="nutri-icon">💤</div><div class="nutri-title">Sueño — El suplemento real</div><div class="nutri-body"><span class="nh">7–8 horas</span> por noche. Es cuando construís músculo y recuperás del running. Ningún suplemento lo reemplaza.</div></div>
   </div>
 </section>
 
@@ -414,52 +419,100 @@
 // ============================================================
 // GYM DATA
 // ============================================================
+// ─── CARGAS DE REFERENCIA (de tu rutina anterior en SmartGym) ───────────────
+// Legs: Sentadilla hack 30→40→50kg | Sumo mancuerna 35kg | Prensa 140→160kg
+//       Extensiones 25kg | Pantorrillas sentado 30kg | Pantorrillas pie 80kg
+//       Buenos días Smith 60kg | Curl femoral 35kg
+// Push: Press hombro máquina 50→55→60kg | Press hombro mancuerna 20kg
+//       Levant. frontal cable 30kg | Levant. lateral mancuerna 10kg
+//       Remo cuello cable 40kg | Cristos polea alta 30kg
+//       Jalones tríceps polea 50kg | Rompecráneos barra (sin carga extra)
+//       Curl cable 40kg | Curl martillo 10kg
+// Pull: Jalones polea agarre cerrado 40→45kg | Remo cuerda sentado 35kg
+//       Dominadas barra fija (peso corporal) | Peck deck 60kg
+//       Cristos máquina 60kg | Curl martillo 12.5kg
+// ─────────────────────────────────────────────────────────────────────────────
+// NOTA: Los kg de referencia son punto de partida. La progresión es el objetivo.
+// CROSSFIT: Si tenés ganas un día, el mejor reemplazo es el MARTES (Push).
+// Es el día de menor impacto en el running — martes no afecta ni el miércoles
+// de running suave ni el viernes/sábado de calidad. Nunca reemplaces Legs (lunes)
+// ni Pull (jueves, que está a 1 día del viernes de running).
+// ─────────────────────────────────────────────────────────────────────────────
 const GYM = {
   legs:[
+    // BLOQUE 1 — FUERZA (0–30 min)
+    // Reemplazamos sentadilla hack (máquina) por sentadilla libre cuando hay barra disponible.
+    // La hack igual sirve: usala con progresión de carga, no de reps.
+    // El RDL reemplaza el curl femoral acostado como primer estímulo de isquios — más funcional para running.
     {cid:'c-legs-1',exs:[
-      {n:'Sentadilla trasera (barra)',s:4,r:'5–6',rest:120,note:'Rey de las piernas. Profundidad completa. Pausa larga para mantener calidad de carga entre series.'},
-      {n:'Peso muerto rumano (RDL)',s:3,r:'8–10',rest:90,note:'Isquios bajo tensión. Sentí el estiramiento, no solo la carga. Espalda neutra durante todo el movimiento.'},
+      {n:'Prensa inclinada para pierna',s:4,r:'8–10',rest:90,note:'Ref: 140kg. Progresá a 160kg cuando hagas 10 reps limpias en todas las series. Pies al ancho de hombros, rodillas alineadas con pies.'},
+      {n:'Peso muerto rumano (RDL) — barra o mancuernas',s:3,r:'8–10',rest:90,note:'Nuevo en tu rutina. Isquios bajo tensión excéntrica. Empezá con 40–50kg y sentí el estiramiento. Mucho más específico para running que el curl femoral.'},
     ]},
+    // BLOQUE 2 — HIPERTROFIA FUNCIONAL (30–60 min)
+    // Mantenemos los ejercicios que ya conocés pero reducimos volumen de gemelos
+    // a 1 variante (pie) y agregamos hip thrust como prioridad.
     {cid:'c-legs-2',exs:[
-      {n:'Hip thrust (barra o mancuernas)',s:4,r:'10–12',rest:75,note:'Glúteo = motor principal al correr. Extensión completa arriba. Pausa de 1 seg en la contracción.'},
-      {n:'Zancadas caminando + mancuernas',s:3,r:'12 c/pierna',rest:60,note:'Movimiento unilateral. Activa estabilizadores del running. Paso largo, torso recto.'},
-      {n:'Elevación de talones de pie',s:4,r:'20',rest:45,note:'Rango completo: talón abajo, punta arriba. Sin rebote. Clave para prevenir lesiones en gemelos y tendón de Aquiles.'},
+      {n:'Hip thrust (en banco + barra o mancuernas)',s:4,r:'10–12',rest:75,note:'Nuevo. Glúteo = motor principal del runner. Ref inicial: 40–50kg. Extensión completa arriba, pausa 1 seg. El ejercicio más importante para mejorar tu tiempo en carrera.'},
+      {n:'Sentadilla sumo con mancuerna',s:3,r:'12',rest:60,note:'Ref: 35kg. Ya la hacés bien. Aductores + glúteo mediano. Descendé lento (3 seg), subida explosiva.'},
+      {n:'Levantamiento de pantorrillas de pie (máquina)',s:4,r:'15–20',rest:45,note:'Ref: 80kg. Ya tenés buena carga. Rango completo obligatorio: talón abajo hasta el tope. Prevención de lesiones en tendón de Aquiles.'},
     ]},
+    // BLOQUE 3 — CORE DE RUNNER (60–75 min)
+    // Reemplazamos extensiones de cuádriceps (aislación pura) por core funcional.
+    // Las extensiones no tienen transferencia al running; el dead bug sí.
     {cid:'c-legs-3',exs:[
-      {n:'Dead bug',s:3,r:'10 c/lado',rest:45,note:'Espalda lumbar pegada al piso en todo momento. Movimiento lento y controlado.'},
-      {n:'Copenhagen plank',s:3,r:'15–20 seg c/lado',rest:45,note:'Aductores + estabilidad de cadera. Protege rodillas al correr. Progresá la duración.'},
+      {n:'Curl femoral acostado (máquina)',s:3,r:'12',rest:45,note:'Ref: 35kg. Lo conservamos como finalizador de isquios. Bajada muy controlada (3 seg).'},
+      {n:'Dead bug',s:3,r:'10 c/lado',rest:45,note:'Nuevo. Core de runner por excelencia. Espalda lumbar pegada al piso en todo momento. Movimiento lento, sin apuro.'},
     ]},
   ],
   push:[
+    // BLOQUE 1 — FUERZA (0–25 min)
+    // En tu rutina anterior no había movimiento de fuerza base de pecho.
+    // Agregamos press inclinado con mancuernas como base (más seguro que banca sola).
+    // Press de hombro en máquina pasa a ser secundario, no primero.
     {cid:'c-push-1',exs:[
-      {n:'Press banca plano (barra)',s:4,r:'5–6',rest:120,note:'Carga alta, movimiento base. Pausa larga — es la que más impacta en la calidad de las series siguientes.'},
-      {n:'Press militar (barra de pie)',s:3,r:'6–8',rest:90,note:'Core apretado, no arquees la lumbar. Hombros activos. Bajada controlada hasta clavículas.'},
+      {n:'Press inclinado con mancuernas',s:4,r:'8–10',rest:90,note:'Nuevo como ejercicio base. Empezá en un peso cómodo (~20–24kg c/mano) y progresá. Bajada controlada 3 seg. Más transferencia a hombros que la banca plana.'},
+      {n:'Press de hombro en máquina',s:3,r:'8–10',rest:90,note:'Ref: 50→55→60kg (ya lo hacías en rampa). Simplificá: 3 series del mismo peso. Cuando hagas 10 limpias, subís 5kg.'},
     ]},
+    // BLOQUE 2 — HIPERTROFIA (25–55 min)
+    // Reducimos de 6 ejercicios de hombro/tríceps a 4 más efectivos.
+    // Eliminamos: levantamiento frontal (redundante con press), remo al cuello (riesgo articular),
+    // cristos polea alta (los reemplazamos por fondos).
+    // Conservamos: laterales, jalones tríceps, rompecráneos. Agregamos fondos.
     {cid:'c-push-2',exs:[
-      {n:'Press inclinado mancuernas',s:3,r:'10–12',rest:60,note:'Bajada controlada 3 segundos. Enfocate en sentir el pecho, no en mover el peso.'},
-      {n:'Fondos en paralelas',s:3,r:'10–12',rest:60,note:'Ligero lean hacia adelante para pecho. Añadí lastre si hacés más de 12 fácil.'},
-      {n:'Elevaciones laterales mancuernas',s:4,r:'12–15',rest:45,note:'Movimiento controlado, sin impulso. Llegá a la horizontal. No uses peso exagerado.'},
-      {n:'Extensión tríceps polea alta',s:3,r:'12–15',rest:45,note:'Codos fijos al costado del torso. Cuerda o barra recta. Contracción completa abajo.'},
+      {n:'Fondos en paralelas (peso corporal o lastre)',s:3,r:'10–12',rest:60,note:'Reemplaza cristos polea. Tríceps + pecho inferior en un solo movimiento. Si hacés 12 fácil, colgá un peso.'},
+      {n:'Levantamiento lateral con mancuerna',s:4,r:'12–15',rest:45,note:'Ref: 10kg. Progresá a 12kg. Sin impulso, movimiento puro. No llegues más arriba de la horizontal.'},
+      {n:'Jalones para tríceps en polea alta (cuerda)',s:3,r:'12–15',rest:45,note:'Ref: 50kg. Codos fijos al costado. Abrí la cuerda al final para máxima contracción. Bajada controlada.'},
+      {n:'Rompecráneos con barra (EZ o recta)',s:3,r:'10–12',rest:45,note:'Ref: empezá con 20–25kg total. Codos fijos, solo mueve el antebrazo. Excelente finalizador de tríceps.'},
     ]},
+    // BLOQUE 3 — CORE (55–70 min)
     {cid:'c-push-3',exs:[
-      {n:'Plancha RKC',s:3,r:'20–30 seg',rest:45,note:'No es plancha pasiva. Apretá glúteos, cuádriceps, core y puños simultáneamente. Máxima tensión.'},
-      {n:'Pallof press (polea)',s:3,r:'10 c/lado',rest:45,note:'Core antirotacional. Fundamental para running estable. Controlá la vuelta al pecho sin girar.'},
+      {n:'Plancha RKC',s:3,r:'20–30 seg',rest:45,note:'No es plancha pasiva. Apretá glúteos, cuádriceps y puños simultáneamente. Máxima tensión total.'},
+      {n:'Pallof press (polea)',s:3,r:'10 c/lado',rest:45,note:'Core antirotacional. Fundamental para running estable. Controlá la vuelta al pecho sin girar el torso.'},
     ]},
   ],
   pull:[
+    // BLOQUE 1 — FUERZA (0–25 min)
+    // En tu rutina anterior las dominadas estaban en el medio del día de espalda/pecho mezclado.
+    // Ahora van primero, cuando el sistema nervioso está fresco — enorme diferencia en calidad.
     {cid:'c-pull-1',exs:[
-      {n:'Dominadas (agarre neutro o prono)',s:4,r:'5–8',rest:120,note:'Ejercicio más importante del día. Si hacés más de 8 fácil, usá lastre. Si no llegás a 5, usá asistencia.'},
-      {n:'Remo con barra (Pendlay o inclinado)',s:4,r:'6–8',rest:90,note:'Espalda paralela al piso. Barra toca el abdomen. Escápulas hacia atrás y arriba en la contracción.'},
+      {n:'Dominadas en barra fija (peso corporal)',s:4,r:'6–8',rest:120,note:'Ref: peso corporal. Ya las hacés. Cuando llegues a 8 reps en las 4 series con buena técnica, agregá lastre. El ejercicio más importante del día.'},
+      {n:'Remo con cuerda sentado (polea baja)',s:4,r:'10–12',rest:90,note:'Ref: 35kg. Agarre neutro con cuerda. Tirá los codos hacia atrás, no las manos. Torso erguido, escápulas juntas al final.'},
     ]},
+    // BLOQUE 2 — HIPERTROFIA (25–55 min)
+    // Eliminamos peck deck y cristos máquina (pecho — no corresponden al día Pull).
+    // Esos ejercicios los absorbemos en el Push del martes si hace falta más volumen de pecho.
+    // Conservamos jalones agarre cerrado, face pulls (nuevo, salud de hombros).
+    // Bíceps: consolidamos en 2 ejercicios en lugar de 3 (curl martillo + curl cable).
     {cid:'c-pull-2',exs:[
-      {n:'Jalón al pecho agarre cerrado',s:3,r:'10–12',rest:60,note:'Complementa dominadas. Enfocate en el cierre de escápulas al final del movimiento.'},
-      {n:'Remo en polea baja sentado',s:3,r:'10–12',rest:60,note:'Agarre neutro. Tirá con los codos, no con las manos. Torso erguido, sin balanceo.'},
-      {n:'Face pulls (polea alta + cuerda)',s:3,r:'15',rest:45,note:'Salud de hombros. Imprescindible para compensar el Push. Codos altos al tirar.'},
-      {n:'Curl bíceps alterno mancuernas',s:3,r:'10–12',rest:45,note:'Supinación completa en la subida. Sin balanceo de torso. Bajada controlada.'},
+      {n:'Jalones con polea agarre cerrado',s:3,r:'10–12',rest:60,note:'Ref: 40→45kg. Progresá en el peso, no en las reps. Cierre de escápulas al final del movimiento. Complementa perfectamente las dominadas.'},
+      {n:'Face pulls (polea alta + cuerda)',s:3,r:'15',rest:45,note:'Nuevo. Salud de hombros — imprescindible para compensar todo el trabajo de Push. Codos altos, manos detrás de las orejas. Ref inicial: 25–30kg.'},
+      {n:'Curl con cable (polea baja)',s:3,r:'10–12',rest:45,note:'Ref: 40kg. Supinación completa arriba. Bajada controlada 3 seg. Más tensión constante que mancuernas.'},
+      {n:'Curl de martillo con mancuernas',s:3,r:'10',rest:45,note:'Ref: 12.5kg. Supinación neutra — trabaja braquial y braquiorradial. Buen finalizador de bíceps. Sin balanceo.'},
     ]},
+    // BLOQUE 3 — CORE (55–70 min)
     {cid:'c-pull-3',exs:[
-      {n:'Ab wheel (rueda abdominal)',s:3,r:'8–12',rest:60,note:'El ejercicio de core más efectivo. Empezá arrodillado. Lumbar neutra en todo el recorrido hacia adelante.'},
-      {n:'Plancha lateral con elevación de pierna',s:3,r:'8 c/lado',rest:45,note:'Cadera arriba, levantá pierna superior. Estabilidad lateral. Clave para postura en running.'},
+      {n:'Ab wheel (rueda abdominal)',s:3,r:'8–12',rest:60,note:'El ejercicio de core más efectivo para runners. Empezá arrodillado. Lumbar neutra en todo el recorrido. No dejes caer la cadera.'},
+      {n:'Plancha lateral con elevación de pierna',s:3,r:'8 c/lado',rest:45,note:'Estabilidad lateral de cadera. Clave para postura en running. Cadera arriba, levantá la pierna superior controlado.'},
     ]},
   ],
 };
@@ -734,10 +787,10 @@ function buildRunning(){
       card.className='wk-card'+(w.race?' race-wk':'');
       let sh='';
       w.ss.forEach(s=>{
-        const sd=addD(ws,s.d),col=TC[s.t]||'#e8e8f0',lbl=TL[s.t]||s.t;
+        const sd=addD(ws,s.d),col=TC[s.t]||'#374151',lbl=TL[s.t]||s.t;
         const isRace=s.t==='race';
         const ph=isRace
-          ?`<div class="pace-badge" style="border-color:rgba(232,255,71,0.5);background:rgba(232,255,71,0.1);"><span class="pv" style="color:#e8ff47;">${s.pace}/km</span><span class="pl" style="color:var(--accent);">META SUB 2:30</span></div>`
+          ?`<div class="pace-badge" style="border-color:rgba(242,92,42,0.4);background:rgba(242,92,42,0.08);"><span class="pv" style="color:var(--accent);">${s.pace}/km</span><span class="pl" style="color:var(--accent);">META SUB 2:30</span></div>`
           :`<div class="pace-badge"><span class="pv">${s.pace}/km</span><span class="pl">${s.km}km · objetivo</span></div>`;
         sh+=`<div class="sess-row">
           <div class="sess-day"><span style="color:${col};font-weight:500;">${s.l}</span><span class="cal">${fmtD(sd)}</span></div>
